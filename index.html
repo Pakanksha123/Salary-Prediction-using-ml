@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Salary Prediction Based on Experience</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Arimo&family=Hind:wght@300&family=Open+Sans+Condensed:wght@300&family=Playfair+Display&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Merriweather', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      color: #222;
+      background: linear-gradient(135deg, #ff6b6b, #fddb3a, #1dd1a1, #54a0ff);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: white;
+      max-width: 400px;
+      width: 100%;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .header h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #ff4757;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input[type="text"] {
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #1e90ff;
+      outline: none;
+    }
+
+    button {
+      background: #1e90ff;
+      color: white;
+      padding: 0.85rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background: #3742fa;
+    }
+
+    .prediction-result {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2ed573;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h3>Salary Prediction Based on Experience</h3>
+    </div>
+
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" name="YearsExperience" placeholder="Years of Experience" required />
+      <input type="text" name="PreviousSalary" placeholder="Previous Salary" required />
+      <button type="submit">Predict</button>
+    </form>
+
+    <div class="prediction-result">
+      {{ prediction_text }}
+    </div>
+  </div>
+</body>
+</html>
